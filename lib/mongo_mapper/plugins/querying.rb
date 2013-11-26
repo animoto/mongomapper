@@ -168,6 +168,8 @@ module MongoMapper
 
           def save_to_collection(options={})
             @_new = false
+            value_to_save = to_mongo
+            logger.debug("save_to_collection: #{value_to_save.inspect} #{{:safe => options[:safe]}.inspect}")
             collection.save(to_mongo, :safe => options[:safe])
           end
       end
